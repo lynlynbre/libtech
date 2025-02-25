@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibTech - Technology Research Literature</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .search-container {
+            max-width: 600px;
+            margin: auto;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .results {
+            margin-top: 20px;
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+        }
+        .paper {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>LibTech - Technology Research Literature</h1>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search for technology research papers...">
+        <button onclick="searchTechnology()">Search</button>
+    </div>
+    <div class="results" id="results"></div>
+
+    <script>
+        const researchPapers = [
+            { title: "Powerplant Technology", author: "El-Wakil, M M", link: "https://www.osti.gov/etdeweb/biblio/6912061" },
+            { title: "Where's the AI?", author: "Roger C. Schank", link: "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/917" },
+            { title: "AI in mental health", author: "Simon D’Alfonso", link: "https://www.sciencedirect.com/science/article/abs/pii/S2352250X2030049X" },
+            { title: "Sustainable AI: AI for sustainability and the sustainability of AI", author: "Aimee van Wynsberghe", link: "https://link.springer.com/article/10.1007/s43681-021-00043-6" },
+            { title: "AI and the Economy", author: "Jason Furman", link: "https://www.journals.uchicago.edu/doi/full/10.1086/699936" },
+            { title: "AI for Games, Third Edition", author: "Ian Millington", link: "https://www.taylorfrancis.com/books/mono/10.1201/9781351053303/ai-games-third-edition-ian-millington" },
+            { title: "Technology as experience", author: "John McCarthy", link: "https://dl.acm.org/doi/abs/10.1145/1015530.1015549" },
+            { title: "Waterjetting Technology", author: "D.A. Summers", link: "https://www.taylorfrancis.com/books/mono/10.1201/9781482294828/waterjetting-technology-summers" },
+            { title: "Are Technology Improvements Contractionary?", author: "Susanto Basu", link: "https://www.aeaweb.org/articles?id=10.1257/aer.96.5.1418" },
+            { title: "Technology as Knowledge", author: "Edwin T. Layton Jr.", link: "https://muse.jhu.edu/pub/1/article/892822/summary" },
+            { title: "Technology is society made durable", author: "Bruno Latour", link: "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-954X.1990.tb03350.x" },
+            { title: "Technology and trade", author: "Gene M. Grossman", link: "https://www.sciencedirect.com/science/article/abs/pii/S157344040580005X" },
+            { title: "The case for technology in developing regions", author: "E. Brewer", link: "https://ieeexplore.ieee.org/abstract/document/1439449" },
+            { title: "Taking technology to market", author: "Ford, D; Ryan, C", link: "https://www.osti.gov/biblio/6132739" },
+            { title: "Technology and its impact in the classroom", author: "Rozalind G Muir-Herzig", link: "https://www.sciencedirect.com/science/article/abs/pii/S0360131503000678" },
+        ];
+
+        function searchTechnology() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const resultsContainer = document.getElementById("results");
+            resultsContainer.innerHTML = "";
+            
+            const filteredPapers = researchPapers.filter(paper => 
+                paper.title.toLowerCase().includes(query) ||
+                paper.author.toLowerCase().includes(query)
+            );
+            
+            if (filteredPapers.length === 0) {
+                resultsContainer.innerHTML = "<p>No results found.</p>";
+            } else {
+                filteredPapers.forEach(paper => {
+                    const paperElement = document.createElement("div");
+                    paperElement.classList.add("paper");
+                    paperElement.innerHTML = `<strong>${paper.title}</strong><br>Author: ${paper.author}<br><a href="${paper.link}" target="_blank">Read More</a>`;
+                    resultsContainer.appendChild(paperElement);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
